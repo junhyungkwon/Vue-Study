@@ -7,10 +7,22 @@
    </div>
   
 
-  <div a v-for="(testcode1,i) in products" :key="i"> <h4>{{testcode1}}</h4>
-     <p a v-for="testcode2 in price" :key="testcode2"> {{testcode2}} 만원</p>
+  <div>
+    <h4>{{products[0]}}</h4>
+     <p> {{price[0]}} 만원</p>
+     <button @click= "increase">허위매물 신고</button>
+     <span>신고수: {{신고수}} </span>
    </div>
    
+   <div>
+    <h4>{{products[1]}}</h4>
+     <p> {{price[1]}} 만원</p>
+   </div>
+
+   <div>
+    <h4>{{products[2]}}</h4>
+     <p> {{price[2]}} 만원</p>
+   </div>
    
   
 </template>
@@ -22,12 +34,20 @@ export default {
   name: 'App',
   data() {
     return {
-      price: ['60', '70', '90'],
+      신고수: 0,
+      price: [60, 70, 90],
       menus: ['Home', 'Shop', 'About'],
       products: ['역삼동 원룸', '천호동 원룸', '마포구 원룸'],
       
     }
   },
+
+  methods : {
+    increase() {
+      this.신고수 += 1;
+    }
+  },
+
   components: {
     
   }
