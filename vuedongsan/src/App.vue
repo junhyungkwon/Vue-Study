@@ -1,9 +1,9 @@
 <template>
 
 
-<div class="black-bg" v-if="modalopen == false"> 
+<div class="black-bg" v-if="modalopen == true"> 
 <div class="white-bg">
-  <h4>상세페이지</h4>
+  <h4>{{ onerooms[누른거].title }}</h4>
   <p>상세페이지 내용</p>
   <button @click="modalopen = false"> 닫기 </button>
    </div>
@@ -11,21 +11,15 @@
 
 <div class= "menu">
   <a  v-for="testcode in menus" :key="testcode"> {{testcode}} </a>
-  
-
    </div>
   
 
-  <div v-for="(원룸들반복,i) in onerooms " :key="i">
-    <img :src="onerooms[i].image" class="room-img" >
-    <h4>{{onerooms[i].title}}</h4>
-     <p> {{onerooms[i].price}} 만원</p>
+  <div v-for="(a,i) in onerooms " :key="i">
+    <img :src="a.image" class="room-img" >
+    <h4 @click="modalopen = true; 누른거 = i">{{a.title}}</h4>
+     <p> {{a.price}} 만원</p>
    </div>
 
-   
-  
-  
-  
 </template>
 
 <script>
@@ -39,12 +33,11 @@ export default {
   name: 'App',
   data() {
     return {
+      누른거: 0,
       onerooms: data,
-      modalopen: true,
+      modalopen: false,
       신고수: [0,0,0],
-      price: [60, 70, 90],
       menus: ['Home', 'Shop', 'About'],
-      products: ['역삼동 원룸', '천호동 원룸', '마포구 원룸'],
       
     }
   },
