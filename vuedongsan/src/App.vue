@@ -3,8 +3,10 @@
 
 <div class="black-bg" v-if="modalopen == true"> 
 <div class="white-bg">
+   <img :src="onerooms[누른거].image">
   <h4>{{ onerooms[누른거].title }}</h4>
-  <p>상세페이지 내용</p>
+  <p>{{onerooms[누른거].content}}</p>
+  <p>{{onerooms[누른거].price}} 원</p>
   <button @click="modalopen = false"> 닫기 </button>
    </div>
 </div>
@@ -13,6 +15,7 @@
   <a  v-for="testcode in menus" :key="testcode"> {{testcode}} </a>
    </div>
   
+  <Discount/>
 
   <div v-for="(a,i) in onerooms " :key="i">
     <img :src="a.image" class="room-img" >
@@ -25,6 +28,7 @@
 <script>
 
 import data from './assets/oneroom.js';
+import Discount from './Discount.vue';
 
 
 
@@ -50,6 +54,7 @@ export default {
   },
 
   components: {
+    Discount : Discount,
     
   }
 }
