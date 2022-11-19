@@ -1,15 +1,7 @@
 <template>
 
 
-<div class="black-bg" v-if="modalopen == true"> 
-<div class="white-bg">
-   <img :src="onerooms[누른거].image">
-  <h4>{{ onerooms[누른거].title }}</h4>
-  <p>{{onerooms[누른거].content}}</p>
-  <p>{{onerooms[누른거].price}} 원</p>
-  <button @click="modalopen = false"> 닫기 </button>
-   </div>
-</div>
+<Modal  @modalclose="modalopen = false" :onerooms="onerooms" :누른거="누른거" :modalopen="modalopen"  />
 
 <div class= "menu">
   <a  v-for="testcode in menus" :key="testcode"> {{testcode}} </a>
@@ -17,11 +9,16 @@
   
   <Discount/>
 
-  <div v-for="(a,i) in onerooms " :key="i">
+  <Card @openModal="modalopen = true; 누른거 = $event"   :onerooms="onerooms[i]" v-for="(원룸,i) in onerooms" :key="원룸"/>
+  
+
+
+
+  <!-- <div v-for="(a,i) in onerooms " :key="i">
     <img :src="a.image" class="room-img" >
-    <h4 @click="modalopen = true; 누른거 = i">{{a.title}}</h4>
+    <h4 @click="modalopen = true; 누른거 = i">{{a.title}}</h4> 
      <p> {{a.price}} 만원</p>
-   </div>
+   </div> -->
 
 </template>
 
@@ -29,6 +26,8 @@
 
 import data from './assets/oneroom.js';
 import Discount from './Discount.vue';
+import Modal from './Modal.vue';
+import Card from './Card.vue';
 
 
 
@@ -55,6 +54,8 @@ export default {
 
   components: {
     Discount : Discount,
+    Modal : Modal,
+    Card : Card,
     
   }
 }
