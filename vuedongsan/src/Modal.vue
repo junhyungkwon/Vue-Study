@@ -20,6 +20,14 @@ export default {
         month: 1,
       }
     },
+    watch : {
+      month(a){
+        if(a >= 13) {
+          alert('13이상 입력하지 마시오.')
+        }
+        },
+      
+    },
 props: {
     onerooms: Array,
     누른거: Number,
